@@ -1,0 +1,12 @@
+Source: lliurex-mime-settings
+Section: admin
+Priority: optional
+Maintainer: LliureX Team <lliurex@gva.es>
+Build-Depends: debhelper (>= 7.0), 
+Standards-Version: 3.9.5
+
+Package: lliurex-mime-settings
+Architecture: all
+Depends: ${misc:Depends}, python
+Description: Lliurex mime configuration
+ LliureX file associations
