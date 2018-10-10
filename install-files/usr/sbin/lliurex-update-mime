@@ -1,0 +1,127 @@
+#!/usr/bin/env python
+
+import os
+import os.path
+import re
+import copy
+import getpass
+
+
+LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
+SYSTEM_DIR="/usr/share/applications/"
+SYSTEM_DEFAULTS=SYSTEM_DIR + "mimeapps.list"
+
+
+class DefaultListManager:
+	
+	def __init__(self):
+		
+		self.system_keys={}
+		if not os.path.exists(SYSTEM_DIR):
+			os.makedirs(SYSTEM_DIR)
+		
+	#def init
+	
+	def read_file(self,path):
+		
+		dic={}
+		dic["default"]={}
+		dic["added"]={}
+		dic["removed"]={}
+
+		added_found=False
+		removed_found=False
+
+		if os.path.exists(path):
+
+			f=open(path,'r')
+			lines=f.readlines()
+			f.close()
+			
+			for line in lines:
+				line=line.strip("\n")
+				
+				if "Added Associations" in line:
+					added_found=True
+				
+				if "Removed Associations" in line:
+					removed_found=True
+				
+				if "=" in line:
+					tmp=line.split("=")
+					if not removed_found and not added_found:
+						dic["default"][tmp[0]]=tmp[1]
+					elif added_found and not removed_found:
+						dic["added"][tmp[0]]=tmp[1]
+					else:
+						dic["removed"][tmp[0]]=tmp[1]
+		return dic
+		
+	#def readFile
+	
+	
+	def merge_dic(self,old_dic,new_dic):
+		
+		
+		ret=copy.copy(old_dic)
+		
+		for key in new_dic["default"]:
+			ret[key]=new_dic["default"][key]
+		
+		for key in new_dic["added"]:
+			ret[key]=new_dic["added"][key]
+		
+		for key in new_dic["removed"]:
+			ret[key]=new_dic["removed"][key]
+		
+			
+		return ret
+		
+	
+	def print_keys(self,dic):
+		
+		for key in dic:
+			print "%s = %s"%(key,dic[key])
+	
+	
+	def write_file(self,path,dic):
+		
+		if dic != None:
+			f=open(path,'w')
+			f.write("\n[Default Applications]\n\n")
+			for key in dic["default"]:
+				f.write(key + " = " + dic["default"][key] + "\n")
+				
+			f.write("\n[Added Associations]\n\n")
+			for key in dic["added"]:
+				f.write(key + " = " + dic["added"][key] + "\n")
+				
+			f.write("\n[Removed Associations]\n\n")
+			
+			for key in dic["removed"]:
+				f.write(key + " = " + dic["removed"][key] + "\n")
+				
+			f.close()
+		
+	#def write_file
+	
+#class DefaultListManager
+
+if __name__=="__main__":
+	
+	if getpass.getuser()!="root":
+		print "[!] You need to execute this program with root priviledges"
+	else:
+		print "Lliurex update mime..."
+		try:
+			dlm=DefaultListManager()
+			system=dlm.read_file(SYSTEM_DEFAULTS)
+			lliurex=dlm.read_file(LLIUREX_DEFAULTS)
+			
+			final=dlm.merge_dic(lliurex,system)
+			dlm.write_file(SYSTEM_DEFAULTS,final)
+
+		except Exception as e:
+			print e
+
+	
