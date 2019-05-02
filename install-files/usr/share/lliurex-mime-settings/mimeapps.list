@@ -105,8 +105,9 @@ application/pdx=acroread.desktop
 
 application/x-ms-dos-executable=wine.desktop
 
-application/x-deb=gdebi.desktop
-application/x-debian-package=gdebi.desktop
+application/x-deb=net.lliurex.debinstaller.desktop
+application/x-debian-package=net.lliurex.debinstaller.desktop
+application/vnd.debian.binary-package=net.lliurex.debinstaller.desktop
 application/x-shockwave-flash=firefox.desktop
 application/x-jclic=jclic.desktop
 application/x-java-archive=java-custom-runner.desktop
