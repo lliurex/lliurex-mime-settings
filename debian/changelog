@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.14) bionic; urgency=medium
+
+  * Add epi as default for debian packages
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Fri, 03 May 2019 08:45:26 +0200
+
 lliurex-mime-settings (0.13) bionic; urgency=medium
 
   * Initial release for bionic
