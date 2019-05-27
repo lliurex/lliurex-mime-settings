@@ -1,5 +1,6 @@
 [Default Applications]
 
+image/svg+xml=inkscape.desktop
 application/ogg=vlc.desktop
 application/vnd.rn-realmedia=vlc.desktop
 application/x-extension-m4a=vlc.desktop
