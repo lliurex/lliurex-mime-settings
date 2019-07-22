@@ -6,7 +6,23 @@ set -e
 
 case "$1" in
    configure)
-	/usr/sbin/lliurex-update-mime || true
+   
+		PACKAGE_NAME="lliurex-mime-settings"
+		ORIGINAL_FILE="/usr/bin/update-desktop-database"
+                LLIUREX_FILE="/usr/bin/update-desktop-database.lliurex"
+                NEW_FILE="/usr/bin/update-desktop-database.real"
+
+
+                if [ ! -L "$ORIGINAL_FILE" ] ; then
+		
+			dpkg-divert --package $PACKAGE_NAME --rename --add --divert  $NEW_FILE  $ORIGINAL_FILE
+                        ln -s ${LLIUREX_FILE} $ORIGINAL_FILE
+
+                fi
+
+   		/usr/sbin/lliurex-update-mime || true
+		/usr/bin/update-desktop-database || true
+		
    ;;
    abort-upgrade|abort-remove|abort-deconfigure)
    ;;
