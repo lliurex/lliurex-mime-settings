@@ -3,6 +3,7 @@
 import os
 import shutil
 import sys
+import copy
 
 LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
 DB_CACHE_FILE="/usr/share/applications/mimeinfo.cache"
@@ -115,7 +116,10 @@ class LLXDesktopDB:
 					desktop_list.remove(mimefile["removed"][mtype])
 					
 			if mtype in suggestions:
-				for s in suggestions[mtype]:
+				# if we are going to insert elements in position 1, we need to do it backwards
+				reversed_list=copy.deepcopy(suggestions[mtype])
+				reversed_list.reverse()
+				for s in reversed_list:
 					desktop_list.insert(0,s)
 					
 			if mtype in mimefile["default"]:
