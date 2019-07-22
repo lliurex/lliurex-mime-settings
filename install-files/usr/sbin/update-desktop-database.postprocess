@@ -3,7 +3,6 @@
 import os
 import shutil
 import sys
-import tempfile
 
 LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
 DB_CACHE_FILE="/usr/share/applications/mimeinfo.cache"
@@ -117,7 +116,8 @@ class LLXDesktopDB:
 					
 			if mtype in suggestions:
 				for s in suggestions[mtype]:
-					desktop_list.insert(0,s)
+					if self.check_desktop(s):
+						desktop_list.insert(0,s)
 					
 			if mtype in mimefile["default"]:
 				desktop_list.insert(0,mimefile["default"][mtype])
@@ -134,20 +134,17 @@ class LLXDesktopDB:
 			new_file.append(line)
 		
 		try:
-			
-			fd, tmpfilepath = tempfile.mkstemp()
+			tmpfilepath="/tmp/.mimeinfo.lliurex"
 			f= open(tmpfilepath,'w')
 			for line in new_file:
 				f.write(line)
 			f.close()
-			os.close(fd)
-			
-			shutil.copy(tmpfilepath,DB_CACHE_FILE)
+			shutil.move(tmpfilepath,DB_CACHE_FILE)
 			
 		except Exception as e:
+			if os.path.exists(tmpfilepath):
+				os.remove(tmpfilepath)
 			print(e)
-		
-		
 		
 	#def merge_files
 	
