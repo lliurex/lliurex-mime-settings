@@ -1,0 +1,5 @@
+# File used to reorder mimeinfo.cache file. It does NOT support ordering
+# and Firefox insists on checking it to guess default applications so we
+# need to modify it with suggestions to order mimeinfo.cache entries.
+
+application/pdf=okularApplication_pdf.desktop

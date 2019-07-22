@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/bin/update-desktop-database.real $@
+/usr/sbin/update-desktop-database.postprocess
