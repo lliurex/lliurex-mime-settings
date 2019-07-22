@@ -116,8 +116,7 @@ class LLXDesktopDB:
 					
 			if mtype in suggestions:
 				for s in suggestions[mtype]:
-					if self.check_desktop(s):
-						desktop_list.insert(0,s)
+					desktop_list.insert(0,s)
 					
 			if mtype in mimefile["default"]:
 				desktop_list.insert(0,mimefile["default"][mtype])
