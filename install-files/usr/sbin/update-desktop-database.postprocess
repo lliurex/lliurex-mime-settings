@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
 import os
+import shutil
 import sys
+import tempfile
 
 LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
 DB_CACHE_FILE="/usr/share/applications/mimeinfo.cache"
@@ -131,10 +133,20 @@ class LLXDesktopDB:
 			line="%s=%s\n"%(mtype,desktop_str)
 			new_file.append(line)
 		
-		f=open("/tmp/cache","w")
-		for line in new_file:
-			f.write(line)
-		f.close()
+		try:
+			
+			fd, tmpfilepath = tempfile.mkstemp()
+			f= open(tmpfilepath,'w')
+			for line in new_file:
+				f.write(line)
+			f.close()
+			os.close(fd)
+			
+			shutil.copy(tmpfilepath,DB_CACHE_FILE)
+			
+		except Exception as e:
+			print(e)
+		
 		
 		
 	#def merge_files
