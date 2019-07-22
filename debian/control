@@ -7,6 +7,6 @@ Standards-Version: 4.1.2
 
 Package: lliurex-mime-settings
 Architecture: all
-Depends: ${misc:Depends}, python
+Depends: ${misc:Depends}, python, python3
 Description: Lliurex mime configuration
  LliureX file associations
