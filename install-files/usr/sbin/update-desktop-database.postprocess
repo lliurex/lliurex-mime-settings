@@ -1,0 +1,154 @@
+#!/usr/bin/python3
+
+import os
+import sys
+
+LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
+DB_CACHE_FILE="/usr/share/applications/mimeinfo.cache"
+SUGGESTIONS_FILE="/usr/share/lliurex-mime-settings/suggestions.list"
+
+class LLXDesktopDB:
+	
+	def __init__(self):
+	
+		self.check_root()
+		
+	#def self
+	
+	def check_root(self):
+	
+		try:
+			f=open("/run/udd.lliurex","w")
+			f.close()
+			os.remove("/run/udd.lliurex")
+		except:
+			sys.exit(0)
+	
+	#def check_root
+	
+	def read_cache_file(self,cache_file=None):
+		
+		if cache_file==None:
+			cache_file=DB_CACHE_FILE
+			
+		if not os.path.exists(cache_file):
+			return {}
+			
+		f=open(cache_file)
+		lines=f.readlines()
+		f.close()
+		
+		content={}
+		
+		for line in lines:
+			if "MIME Cache" in line:
+				continue
+			if len(line) < 5:
+				continue
+			if line.startswith("#"):
+				continue
+				
+			mime_type,desktops=line.split("=")
+			desktops=desktops.rstrip("\n").split(";")
+			content[mime_type]=[]
+			for d in desktops:
+				if len(d)>1:
+					content[mime_type].append(d)
+		
+		return content
+		
+	#def read_cache_file
+	
+	def read_mimelist_file(self):
+		
+		path=LLIUREX_DEFAULTS
+		
+		dic={}
+		dic["default"]={}
+		dic["added"]={}
+		dic["removed"]={}
+
+		added_found=False
+		removed_found=False
+
+		if os.path.exists(path):
+
+			f=open(path,'r')
+			lines=f.readlines()
+			f.close()
+			
+			for line in lines:
+				line=line.strip("\n")
+				
+				if "Added Associations" in line:
+					added_found=True
+				
+				if "Removed Associations" in line:
+					removed_found=True
+				
+				if "=" in line:
+					tmp=line.split("=")
+					if not removed_found and not added_found:
+						dic["default"][tmp[0]]=tmp[1]
+					elif added_found and not removed_found:
+						dic["added"][tmp[0]]=tmp[1]
+					else:
+						dic["removed"][tmp[0]]=tmp[1]
+		return dic
+		
+	#def readFile
+	
+	
+	def merge_files(self,dbfile,mimefile,suggestions={}):
+		
+		new_file=[]
+		
+		new_file.append("[MIME Cache]\n")
+		
+		for mtype in dbfile:
+			
+			desktop_list=dbfile[mtype]
+			
+			if mtype in mimefile["removed"]:
+				if mimefile["removed"][mtype] in desktop_list:
+					desktop_list.remove(mimefile["removed"][mtype])
+					
+			if mtype in suggestions:
+				for s in suggestions[mtype]:
+					desktop_list.insert(0,s)
+					
+			if mtype in mimefile["default"]:
+				desktop_list.insert(0,mimefile["default"][mtype])
+					
+			if mtype in mimefile["added"]:
+				desktop_list.insert(0,mimefile["added"][mtype])
+				
+			desktop_str=""
+			for d in desktop_list:
+				if d not in desktop_str:
+					desktop_str+=d+";"
+			
+			line="%s=%s\n"%(mtype,desktop_str)
+			new_file.append(line)
+		
+		f=open("/tmp/cache","w")
+		for line in new_file:
+			f.write(line)
+		f.close()
+		
+		
+	#def merge_files
+	
+	
+#class LLXDesktopDB
+
+if __name__=="__main__":
+	
+	cache=LLXDesktopDB()
+	mimedb=cache.read_cache_file()
+	mime_suggestions=cache.read_cache_file(SUGGESTIONS_FILE)
+	mimelist=cache.read_mimelist_file()
+	cache.merge_files(mimedb,mimelist,mime_suggestions)
+	
+		
+	
