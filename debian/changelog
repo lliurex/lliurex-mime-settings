@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.15) bionic; urgency=medium
+
+  * Adding support to modify mimeinfo.cache file
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 22 Jul 2019 12:22:56 +0200
+
 lliurex-mime-settings (0.14.1) bionic; urgency=medium
 
   * And inkscape as default for svg
