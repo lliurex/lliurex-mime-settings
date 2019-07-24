@@ -1,3 +1,10 @@
+lliurex-mime-settings (0.16) bionic; urgency=high
+
+  * Non-maintainer upload.
+  * Adding thunderbird email association 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 24 Jul 2019 12:53:03 +0200
+
 lliurex-mime-settings (0.15) bionic; urgency=medium
 
   * Adding support to modify mimeinfo.cache file
