@@ -3,3 +3,4 @@
 # need to modify it with suggestions to order mimeinfo.cache entries.
 
 application/pdf=okularApplication_pdf.desktop
+x-scheme-handler/mailto=thunderbird.desktop
