@@ -121,3 +121,6 @@ x-content/software=lliurex-autorun.desktop
 
 application/x-ms-dos-executable=file-roller.desktop
 
+[New email association]
+
+x-scheme-handler/mailto=thunderbird.desktop
