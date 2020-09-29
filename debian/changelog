@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.27) focal; urgency=medium
+
+  * Initial release for focal
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 29 Sep 2020 11:34:32 +0200
+
 lliurex-mime-settings (0.17) bionic; urgency=medium
 
   * Migrate to python3 
