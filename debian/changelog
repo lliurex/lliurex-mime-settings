@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.28) focal; urgency=medium
+
+  * Add firefox as default app for http(s)
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 16 Jun 2021 10:14:15 +0200
+
 lliurex-mime-settings (0.27) focal; urgency=medium
 
   * Initial release for focal
