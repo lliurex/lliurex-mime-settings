@@ -113,8 +113,6 @@ application/x-shockwave-flash=firefox.desktop
 application/x-jclic=jclic.desktop
 application/x-java-archive=java-custom-runner.desktop
 
-[Added Associations]
-
 x-content/software=lliurex-autorun.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
