@@ -116,15 +116,12 @@ application/x-java-archive=java-custom-runner.desktop
 [Added Associations]
 
 x-content/software=lliurex-autorun.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/mailto=thunderbird.desktop
+
 
 [Removed Associations]
 
 application/x-ms-dos-executable=file-roller.desktop
 
-[New email association]
-
-x-scheme-handler/mailto=thunderbird.desktop
-
-[New browser association]
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
