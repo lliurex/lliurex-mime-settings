@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.29) focal; urgency=medium
+
+  * Trying to fix firefox
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 27 Sep 2021 09:32:54 +0200
+
 lliurex-mime-settings (0.28) focal; urgency=medium
 
   * Add firefox as default app for http(s)
