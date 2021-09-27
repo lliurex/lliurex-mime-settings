@@ -10,7 +10,10 @@ import getpass
 LLIUREX_DEFAULTS="/usr/share/lliurex-mime-settings/mimeapps.list"
 SYSTEM_DIR="/usr/share/applications/"
 SYSTEM_DEFAULTS=SYSTEM_DIR + "mimeapps.list"
-
+ETC_DESKTOP_DIR="/etc/xdg/lliurex/desktop/"
+ETC_CLASSROOM_DIR="/etc/xdg/lliurex/classroom/"
+ETC_DESKTOP_FILE=ETC_DESKTOP_DIR+"mimeapps.list"
+ETC_CLASSROOM_FILE=ETC_CLASSROOM_DIR+"mimeapps.list"
 
 class DefaultListManager:
 	
@@ -120,6 +123,14 @@ if __name__=="__main__":
 			
 			final=dlm.merge_dic(lliurex,system)
 			dlm.write_file(SYSTEM_DEFAULTS,final)
+			
+			if os.path.exists(ETC_DESKTOP_DIR):
+				if not os.path.exists(ETC_DESKTOP_FILE):
+					os.symlink(SYSTEM_DEFAULTS,ETC_DESKTOP_FILE)
+					
+			if os.path.exists(ETC_CLASSROOM_DIR):
+				if not os.path.exists(ETC_CLASSROOM_FILE):
+					os.symlink(SYSTEM_DEFAULTS,ETC_CLASSROOM_FILE)
 
 		except Exception as e:
 			print(e)
