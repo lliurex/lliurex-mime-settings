@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.39) jammy; urgency=medium
+
+  * Initial release for Jammy
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 31 Aug 2023 12:17:02 +0200
+
 lliurex-mime-settings (0.29) focal; urgency=medium
 
   * Trying to fix firefox
