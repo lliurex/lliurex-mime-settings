@@ -94,15 +94,21 @@ x-content/video-svcd=vlc.desktop
 
 x-content/audio-cdda=rhythmbox.desktop
 
-application/pdf=acroread.desktop
-application/vnd.adobe.xfdf=acroread.desktop
-application/vnd.fdf=acroread.desktop
-application/vnd.adobe.xdp+xml=acroread.desktop
-application/vnd.adobe.pdx=acroread.desktop
-application/fdf=acroread.desktop
-application/xdp=acroread.desktop
-application/xfdf=acroread.desktop
-application/pdx=acroread.desktop
+application/pdf=okular.desktop
+application/vnd.adobe.xfdf=okular.desktop
+application/vnd.fdf=okular.desktop
+application/vnd.adobe.xdp+xml=okular.desktop
+application/vnd.adobe.pdx=okular.desktop
+application/fdf=okular.desktop
+application/xdp=okular.desktop
+application/xfdf=okular.desktop
+application/pdx=okular.desktop
+
+text/plain=kwrite.desktop
+
+image/jpeg=gwenview.desktop
+image/png=gwenview.desktop
+image/gif=gwenview.desktop
 
 application/x-ms-dos-executable=wine.desktop
 
