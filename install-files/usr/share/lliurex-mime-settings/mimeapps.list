@@ -1,5 +1,7 @@
 [Default Applications]
 
+inode/directory=org.kde.dolphin.desktop
+
 image/svg+xml=inkscape.desktop
 application/ogg=vlc.desktop
 application/vnd.rn-realmedia=vlc.desktop
