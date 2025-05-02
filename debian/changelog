@@ -1,3 +1,9 @@
+lliurex-mime-settings (0.50.2) noble; urgency=medium
+
+  * Added dolphin
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 02 May 2025 08:26:41 +0200
+
 lliurex-mime-settings (0.50.1) noble; urgency=medium
 
   * Added more mimetypes
